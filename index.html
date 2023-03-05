@@ -1,1 +1,100 @@
-hi
+<!DOCTYPE html>
+<html>
+<head>
+	<title>周老师生日快乐</title>
+	<style>
+		body {
+			background-image: url("./background.png");
+			background-size: stretch;
+			color: white;
+			font-family: Arial, sans-serif;
+			font-size: 24px;
+			text-align: center;
+		}
+		
+		h1 {
+			font-size: 60px;
+			font-weight: bold;
+			background-image: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff);
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: rainbow 2s linear infinite;
+		}
+		
+		@keyframes rainbow {
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+		
+		#card {
+			margin-top: 100px;
+			padding: 50px;
+			background-color: rgba(0,0,0,0.5);
+			border-radius: 20px;
+			display: inline-block;
+			animation: typewriter 2s steps(40) 1s 1 normal both;
+		}
+		
+		@keyframes typewriter {
+			from {
+				width: 0;
+			}
+			to {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="card">
+		<h1>Happy Birthday, 周老师!</h1>
+		<p id="text"></p>
+	</div>
+	
+	<script>
+		var messages = [
+			"祝您生日快乐，身体健康，事业成功，家庭幸福！",
+			"Wishing you a happy birthday, good health, successful career, and a happy family!",
+			"pona lukin e sina la, sina pona mute! lipu ni li pona tawa sina, tawa tenpo ale!"
+		];
+		
+		var textElement = document.getElementById("text");
+		var messageIndex = 0;
+		var charIndex = 0;
+		
+		function type() {
+			if (charIndex < messages[messageIndex].length) {
+				textElement.innerHTML += messages[messageIndex].charAt(charIndex);
+				charIndex++;
+				setTimeout(type, 100);
+			} else {
+				setTimeout(erase, 2000);
+			}
+		}
+		
+		function erase() {
+			if (charIndex > 0) {
+				textElement.innerHTML = messages[messageIndex].substring(0, charIndex - 1);
+				charIndex--;
+				setTimeout(erase, 50);
+			} else {
+                messageIndex++;
+			if (messageIndex >= messages.length) {
+				messageIndex = 0;
+			}
+			setTimeout(type, 2000);
+		}
+	}
+	
+	setTimeout(type, 2000);
+</script>
+</body>
+</html>
